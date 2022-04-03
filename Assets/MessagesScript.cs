@@ -17,6 +17,7 @@ public class MessagesScript : MonoBehaviour
 
     private bool waitToHide = true;
 
+    private AudioSource audio;
 
     bool gateOpen = false;
     
@@ -57,6 +58,8 @@ public class MessagesScript : MonoBehaviour
                         StartCoroutine(hideMessageAfter(3));
                         gateOpen = true;
                         anim.Play("GateOpen");
+                        audio = gate.GetComponent<AudioSource>();
+                        audio.Play();
                     }
                 }
             }
@@ -67,6 +70,8 @@ public class MessagesScript : MonoBehaviour
                     message.text = "You found a key";
                     StartCoroutine(hideMessageAfter(6));
                     keyFound = true;
+                    audio = hit.transform.gameObject.GetComponent<AudioSource>();
+                    audio.Play();
                 } else
                 {
                     if (!waitToHide)
